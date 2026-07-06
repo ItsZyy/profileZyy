@@ -1,13 +1,7 @@
-// Isi tahun copyright otomatis
 const tahunElement = document.getElementById('tahun-copyright');
 tahunElement.textContent = new Date().getFullYear();
 
-// Log ke console sebagai tanda halaman berhasil dimuat
-console.log('Website profil pribadi berhasil dimuat!');
-
-// ============================================
-// Fitur active menu navbar
-// ============================================
+console.log('Website profil ezy berhasil dimuat!');
 
 const navLinks = document.querySelectorAll('.nav-menu a');
 const sections = Array.from(navLinks)
