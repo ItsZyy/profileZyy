@@ -42,14 +42,10 @@
 
 /* Portfolio disembunyikan saat boot screen aktif */
 body.boot-active .navbar,
-body.boot-active .header,
-body.boot-active .tentang,
-body.boot-active .skill,
-body.boot-active .pengalaman,
-body.boot-active .pendidikan,
-body.boot-active .sertifikat,
-body.boot-active .kontak,
-body.boot-active .footer {
+body.boot-active .hero,
+body.boot-active .section,
+body.boot-active .footer,
+body.boot-active .page-hero {
     display: none;
 }
 
@@ -353,8 +349,9 @@ body.logo-active #logo-screen {
 
 /* Logo image - besar, proporsional, jadi fokus utama */
 .logo-img {
-    width: 280px;
-    height: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
     display: block;
     /* Efek glow biru Arch Linux */
     filter: drop-shadow(0 0 20px rgba(23, 147, 209, 0.45))
@@ -503,7 +500,8 @@ body.logo-active .logo-svg {
 
 @media (max-width: 600px) {
     .logo-img {
-        width: 160px;
+        width: 140px;
+        height: 140px;
     }
 
     .logo-title {

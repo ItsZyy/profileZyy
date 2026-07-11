@@ -453,6 +453,16 @@
         setTimeout(function () {
             // Sembunyikan logo screen
             document.body.classList.remove('logo-active');
+
+            // Tandai di sessionStorage bahwa boot sudah ditampilkan
+            if (typeof sessionStorage !== 'undefined') {
+                sessionStorage.setItem('portfolio_boot_shown', 'true');
+            }
+
+            // Panggil callback global jika ada
+            if (typeof window.portfolioMarkBootShown === 'function') {
+                window.portfolioMarkBootShown();
+            }
         }, 800);
     }
 
@@ -461,6 +471,20 @@
     // ========================================
 
     function init() {
+        // Cek sessionStorage: jika boot sudah ditampilkan, skip
+        if (typeof sessionStorage !== 'undefined') {
+            var bootShown = sessionStorage.getItem('portfolio_boot_shown');
+            if (bootShown === 'true') {
+                // Sembunyikan boot screen, tampilkan konten langsung
+                document.body.classList.remove('boot-active');
+                var bootScreen = document.getElementById('boot-screen');
+                var logoScreen = document.getElementById('logo-screen');
+                if (bootScreen) bootScreen.style.display = 'none';
+                if (logoScreen) logoScreen.style.display = 'none';
+                return;
+            }
+        }
+
         // Tambahkan class ke body untuk menampilkan boot screen
         document.body.classList.add('boot-active');
 

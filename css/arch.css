@@ -1,15 +1,220 @@
 /*
  * arch.css
  * =========
- * File ini berisi style untuk tema Arch Linux yang diterapkan pada portfolio v2.
- * Termasuk: warna, font, scrollbar custom, cursor, dan elemen-elemen bergaya terminal.
- *
- * Pada tahap ini file masih kosong dan hanya berfungsi sebagai placeholder.
- * Implementasi style akan dilakukan pada tahap pengembangan berikutnya.
+ * Arch Linux theme foundations: CSS variables, custom scrollbar,
+ * monospace accents, and subtle terminal-inspired details.
  */
 
 /* ========================================
-   ARCH LINUX THEME VARIABLES
+   CSS CUSTOM PROPERTIES
    ======================================== */
 
-/* Variabel warna dan font tema Arch Linux akan didefinisikan di sini */
+:root {
+    /* Backgrounds */
+    --bg-primary: #0b0f14;
+    --bg-secondary: #111820;
+    --bg-surface: #151d28;
+    --bg-card: #161e2a;
+    --bg-elevated: #1a2332;
+    --bg-navbar: rgba(11, 15, 20, 0.8);
+
+    /* Accent */
+    --accent: #1793D1;
+    --accent-light: #1eaae8;
+    --accent-dim: rgba(23, 147, 209, 0.12);
+    --accent-border: rgba(23, 147, 209, 0.2);
+    --accent-glow: rgba(23, 147, 209, 0.25);
+
+    /* Semantic */
+    --green: #4ade80;
+    --green-dim: rgba(74, 222, 128, 0.12);
+    --red: #ef4444;
+
+    /* Text */
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+
+    /* Borders */
+    --border: rgba(255, 255, 255, 0.06);
+    --border-hover: rgba(255, 255, 255, 0.1);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-accent: 0 4px 20px rgba(23, 147, 209, 0.15);
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    /* Spacing */
+    --section-gap: 100px;
+    --container-max: 900px;
+
+    /* Transitions */
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-dim);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-dim) var(--bg-primary);
+}
+
+/* ========================================
+   MONOSPACE ACCENT UTILITY
+   ======================================== */
+
+.mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+}
+
+/* ========================================
+   LINUX DETAIL - TERMINAL PROMPT PREFIX
+   ======================================== */
+
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.section-label::before {
+    content: '$';
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ========================================
+   ARCH LINUX LOGO MARK (small, in navbar)
+   ======================================== */
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.nav-brand-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.nav-brand-text {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+
+/* ========================================
+   PAGE TRANSITION OVERLAY
+   ======================================== */
+
+.page-transition {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    z-index: 9990;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s var(--ease);
+}
+
+.page-transition.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ========================================
+   SCROLL REVEAL ANIMATION
+   ======================================== */
+
+.reveal-ready {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s var(--ease),
+                transform 0.6s var(--ease);
+}
+
+.reveal-ready.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger children inside sections */
+.reveal-ready.revealed .timeline-card,
+.reveal-ready.revealed .cert-card,
+.reveal-ready.revealed .contact-card,
+.reveal-ready.revealed .skill-chip {
+    animation: fadeSlideUp 0.5s var(--ease) both;
+}
+
+.reveal-ready.revealed .timeline-card:nth-child(1),
+.reveal-ready.revealed .cert-card:nth-child(1),
+.reveal-ready.revealed .contact-card:nth-child(1),
+.reveal-ready.revealed .skill-chip:nth-child(1) { animation-delay: 0.05s; }
+
+.reveal-ready.revealed .timeline-card:nth-child(2),
+.reveal-ready.revealed .cert-card:nth-child(2),
+.reveal-ready.revealed .contact-card:nth-child(2),
+.reveal-ready.revealed .skill-chip:nth-child(2) { animation-delay: 0.1s; }
+
+.reveal-ready.revealed .timeline-card:nth-child(3),
+.reveal-ready.revealed .cert-card:nth-child(3),
+.reveal-ready.revealed .contact-card:nth-child(3),
+.reveal-ready.revealed .skill-chip:nth-child(3) { animation-delay: 0.15s; }
+
+.reveal-ready.revealed .skill-chip:nth-child(4) { animation-delay: 0.2s; }
+.reveal-ready.revealed .skill-chip:nth-child(5) { animation-delay: 0.25s; }
+.reveal-ready.revealed .skill-chip:nth-child(6) { animation-delay: 0.3s; }
+.reveal-ready.revealed .skill-chip:nth-child(7) { animation-delay: 0.35s; }
+.reveal-ready.revealed .skill-chip:nth-child(8) { animation-delay: 0.4s; }
+.reveal-ready.revealed .skill-chip:nth-child(9) { animation-delay: 0.45s; }
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

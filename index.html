@@ -4,49 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Saya</title>
+    <link rel="stylesheet" href="css/arch.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/boot.css">
-    <link rel="stylesheet" href="css/arch.css">
 </head>
 <body>
 
-    <!-- ============================================
-         ARCH LINUX V2 - SCREEN PLACEHOLDERS
-         Semua container ini tersembunyi (display: none)
-         dan tidak memengaruhi tampilan website saat ini.
-         Akan diimplementasikan pada tahap berikutnya.
-         ============================================ -->
-
-    <!-- Boot Screen: Layar booting ala Arch Linux (systemd-style) -->
+    <!-- Boot Screen -->
     <div id="boot-screen">
         <div class="boot-content">
-            <!-- Informasi sistem di bagian atas -->
             <div class="boot-header" id="boot-header"></div>
-            <!-- Area teks log boot -->
             <div class="boot-text" id="boot-text"></div>
-            <!-- Boot timer di bagian bawah -->
             <div class="boot-timer" id="boot-timer">[    0.000]</div>
-            <!-- Progress bar -->
             <div class="boot-progress">
                 <div class="boot-progress-bar" id="boot-progress-bar"></div>
             </div>
         </div>
     </div>
 
-    <!-- Logo Screen: Splash screen dengan logo Arch Linux resmi setelah boot -->
+    <!-- Logo Screen (Splash) -->
     <div id="logo-screen">
         <div class="logo-content">
-            <!-- Logo Arch Linux resmi (SVG lokal) -->
             <div class="logo-svg" id="logo-svg">
                 <img src="assets/arch-logo.svg" alt="Arch Linux Logo" class="logo-img">
             </div>
-            <!-- Teks di bawah logo (muncul satu per satu) -->
             <div class="logo-text" id="logo-text">
                 <div class="logo-title" id="logo-title">ZyyArch</div>
                 <div class="logo-subtitle" id="logo-subtitle">Personal Portfolio</div>
                 <div class="logo-name" id="logo-name">Ezy Muhammad Ikbal</div>
             </div>
-            <!-- Indikator loading minimalis (3 titik biru) -->
             <div class="logo-loading" id="logo-loading">
                 <div class="logo-loading-dots">
                     <span class="logo-dot"></span>
@@ -57,41 +43,67 @@
         </div>
     </div>
 
-    <!-- Terminal Login: Terminal untuk input nama user -->
     <div id="terminal-login"></div>
-
-    <!-- Transition Screen: Transisi dari terminal ke website utama -->
     <div id="transition-screen"></div>
 
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#tentang">Tentang Saya</a></li>
-                <li><a href="#skill">Skill</a></li>
-                <li><a href="#pengalaman">Pengalaman</a></li>
-                <li><a href="#pendidikan">Pendidikan</a></li>
-                <li><a href="#sertifikat">Sertifikat</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
+            <div class="navbar-inner">
+                <a href="index.html" class="nav-brand">
+                    <img src="assets/arch-logo.svg" alt="Arch" class="nav-brand-icon">
+                    <span class="nav-brand-text">ZyyArch</span>
+                </a>
+
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="certificates.html">Certificates</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+
+                <button class="nav-hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Header -->
-    <header class="header" id="home">
+    <!-- Mobile Menu -->
+    <div class="nav-mobile">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
         <div class="container">
-            <img src="assets/profile.jpg" alt="Foto Profil" class="foto-profil">
-            <h1 class="nama">Ezy Muhamad Ikbal</h1>
-            <p class="status">Siswa SMKN 2 subang jurusan Rekayasa Perangkat Lunak</p>
+            <div class="hero-content">
+                <img src="assets/profile.jpg" alt="Foto Profil" class="hero-avatar">
+                <h1 class="hero-name">Ezy Muhamad Ikbal</h1>
+                <p class="hero-status">
+                    Siswa SMKN 2 Subang jurusan Rekayasa Perangkat Lunak
+                    <br>
+                    <span class="mono-tag">~/portfolio $</span>
+                </p>
+            </div>
         </div>
     </header>
 
     <!-- Tentang Saya -->
-    <section class="tentang" id="tentang">
+    <section class="section" id="tentang">
         <div class="container">
-            <h2>Tentang Saya</h2>
-            <p>
+            <div class="section-header">
+                <span class="section-label">whoami</span>
+                <h2 class="section-title">Tentang Saya</h2>
+            </div>
+            <p class="about-text">
                 Halo! Saya seorang siswa SMKN 2 subang jurusan Rekayasa Perangkat Lunak
                 yang sedang belajar menjadi pengembang web/aaplikasi. Saya memiliki
                 ketertarikan besar dalam dunia pemrograman dan teknologi
@@ -101,100 +113,25 @@
         </div>
     </section>
 
-    <!-- Skill -->
-    <section class="skill" id="skill">
-        <div class="container">
-            <h2>Skill</h2>
-            <div class="skill-list">
-                <div class="skill-item">HTML</div>
-                <div class="skill-item">CSS</div>
-                <div class="skill-item">JavaScript</div>
-                <div class="skill-item">PHP</div>
-                <div class="skill-item">MariaDB</div>
-                <div class="skill-item">Git</div>
-                <div class="skill-item">Linux</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pengalaman -->
-    <section class="pengalaman" id="pengalaman">
-        <div class="container">
-            <h2>Pengalaman</h2>
-            <ul class="pengalaman-list">
-                <li>
-                    <strong>Praktik Kerja Lapangan</strong> - Universitas Subang
-                    <span class="tahun">(april-juni 2026)</span>
-                    <p>Membantu bagian Administrasi Universitas dalam mengelola sistem informasi dan persuratan.</p>
-                </li>
-                <li>
-                    <strong>Anggota Pastebrata</strong> - Paskibra Smkn 2 subang
-                    <span class="tahun">(2024 - Sekarang)</span>
-                    <p>Bertanggung jawab di bidang IT mengelola dan membuat jadwal organisasi dan membuat surat serta membantu dokumentasi kegiatan.</p>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Pendidikan -->
-    <section class="pendidikan" id="pendidikan">
-        <div class="container">
-            <h2>Pendidikan</h2>
-            <ul class="pendidikan-list">
-                <li>
-                    <strong>SMKN 2 Subang</strong>
-                    <br>Jurusan Rekayasa Perangkat Lunak
-                    <br><span class="tahun">2024 - Sekarang</span>
-                </li>
-                <li>
-                    <strong>MTs Daarul Ma'arif Purwakarta</strong>
-                    <br><span class="tahun">2021 - 2024</span>
-                </li>
-                <li>
-                    <strong>SDN 2 Sukajadi</strong>
-                    <br><span class="tahun">2015 - 2021</span>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Sertifikat -->
-    <section class="sertifikat" id="sertifikat">
-        <div class="container">
-            <h2>Sertifikat</h2>
-            <div class="sertifikat-list">
-                <div class="sertifikat-card">
-                    <img src="assets/sertifikat%20dicoding.jpeg" alt="Sertifikat Dicoding" class="sertifikat-gambar">
-                    <p class="sertifikat-judul">Sertifikat Dicoding</p>
-                </div>
-                <div class="sertifikat-card">
-                    <img src="assets/sertifikat%20debat.jpeg" alt="Sertifikat Debat" class="sertifikat-gambar">
-                    <p class="sertifikat-judul">Sertifikat Lomba Debat</p>
-                </div>
-                <div class="sertifikat-card">
-                    <img src="assets/sertifikat%20pkl.jpeg" alt="Sertifikat PKL" class="sertifikat-gambar">
-                    <p class="sertifikat-judul">Sertifikat PKL</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kontak -->
-    <section class="kontak" id="kontak">
-        <div class="container">
-            <h2>Kontak</h2>
-            <div class="kontak-info">
-                <p>Email : <a href="mailto:ezymikbal@gmail.com">ezymikbal@gmail.com</a></p>
-                <p>GitHub : <a href="https://github.com/ItsZyy" target="_blank">@ItsZyy</a></p>
-                <p>Instagram : <a href="https://www.instagram.com/zyymikbll_?igsh=MTd5N2cxZDFwNXR4dQ==" target="_blank">@zyymikbll_</a></p>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; <span id="tahun-copyright"></span> Ezy Muhamad Ikbal. All rights reserved.</p>
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="assets/arch-logo.svg" alt="Arch" class="footer-brand-icon">
+                    <span class="footer-brand-text">ZyyArch</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="certificates.html">Certificates</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                &copy; <span id="tahun-copyright"></span> <span class="mono">Ezy Muhamad Ikbal</span>. All rights reserved.
+            </div>
         </div>
     </footer>
 
