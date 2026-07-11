@@ -431,6 +431,28 @@
 
             // Tampilkan logo screen
             document.body.classList.add('logo-active');
+
+            // Setelah splash screen selesai (~2.5 detik), transisi ke portfolio
+            setTimeout(transitionToPortfolio, 2500);
+        }, 800);
+    }
+
+    // ========================================
+    // FUNGSI: TRANSISI KE PORTFOLIO
+    // ========================================
+
+    /**
+     * Melakukan fade out Logo Screen lalu menampilkan halaman portfolio.
+     * Dipanggil setelah splash screen selesai.
+     */
+    function transitionToPortfolio() {
+        // Tambahkan class untuk fade out logo screen
+        document.body.classList.add('logo-fade');
+
+        // Setelah fade out selesai (800ms), tampilkan portfolio
+        setTimeout(function () {
+            // Sembunyikan logo screen
+            document.body.classList.remove('logo-active');
         }, 800);
     }
 

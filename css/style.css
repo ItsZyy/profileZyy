@@ -1,3 +1,22 @@
+/*
+ * style.css
+ * =========
+ * Portfolio v2 - Arch Linux Theme
+ *
+ * Palet warna:
+ *   Background : #0a0a0a (sangat gelap)
+ *   Surface    : #111111 (kartu, section)
+ *   Blue accent: #1793D1 (Arch Linux blue)
+ *   Green      : #4ade80 (status)
+ *   Text       : #e0e0e0 (utama)
+ *   Muted      : #8b8b8b (sekunder)
+ *   Dim        : #505050 (label)
+ */
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,25 +28,52 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #ffffff;
-    color: #333333;
-    line-height: 1.6;
+    font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
 }
+
+::selection {
+    background-color: rgba(23, 147, 209, 0.3);
+    color: #ffffff;
+}
+
+/* ========================================
+   CONTAINER
+   ======================================== */
 
 .container {
     width: 90%;
-    max-width: 800px;
+    max-width: 820px;
     margin: 0 auto;
 }
+
+/* ========================================
+   NAVBAR - MODERN TRANSPARENT → BLUR
+   ======================================== */
 
 .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #ffffff;
-    padding: 12px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 14px 0;
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.3s ease,
+                backdrop-filter 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Navbar saat di-scroll */
+.navbar.scrolled {
+    background-color: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(23, 147, 209, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .nav-menu {
@@ -35,82 +81,175 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px 28px;
+    gap: 6px 24px;
 }
 
 .nav-menu a {
-    color: #333333;
+    color: #8b8b8b;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.3px;
-    padding: 6px 0 8px;
-    transition: color 0.2s ease;
+    padding: 6px 2px 8px;
+    position: relative;
+    transition: color 0.25s ease;
+}
+
+/* Hover effect */
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #1793D1;
+    transition: width 0.25s ease;
 }
 
 .nav-menu a:hover {
-    color: #2563eb;
+    color: #e0e0e0;
 }
 
-.nav-menu a.active {
-    color: #2563eb;
-    border-bottom: 2px solid #2563eb;
+.nav-menu a:hover::after {
+    width: 100%;
 }
+
+/* Active menu */
+.nav-menu a.active {
+    color: #1793D1;
+}
+
+.nav-menu a.active::after {
+    width: 100%;
+    background-color: #1793D1;
+}
+
+/* ========================================
+   HEADER - HERO SECTION
+   ======================================== */
 
 .header {
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #0d1b2a 100%);
     color: #ffffff;
     text-align: center;
-    padding: 60px 0 40px 0;
+    padding: 80px 0 60px 0;
     scroll-margin-top: 72px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle gradient overlay */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(23, 147, 209, 0.08) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .foto-profil {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 16px;
-    border: 3px solid #ffffff;
+    margin-bottom: 20px;
+    border: 3px solid rgba(23, 147, 209, 0.4);
+    box-shadow: 0 0 20px rgba(23, 147, 209, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .header .nama {
-    font-size: 32px;
+    font-size: 34px;
+    font-weight: 700;
     margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
 }
 
 .header .status {
-    font-size: 18px;
-    opacity: 0.9;
+    font-size: 16px;
+    color: #8b8b8b;
+    position: relative;
+    z-index: 1;
 }
 
+/* ========================================
+   SECTIONS - UMUM
+   ======================================== */
+
 section {
-    padding: 40px 0;
+    padding: 60px 0;
     scroll-margin-top: 72px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+section:last-of-type {
+    border-bottom: none;
 }
 
 section h2 {
-    font-size: 24px;
-    color: #2563eb;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #2563eb;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1793D1;
+    margin-bottom: 28px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(23, 147, 209, 0.3);
+    letter-spacing: 0.5px;
+    position: relative;
 }
+
+/* ========================================
+   TENTANG SAYA
+   ======================================== */
+
+.tentang p {
+    color: #b0b0b0;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 640px;
+}
+
+/* ========================================
+   SKILL
+   ======================================== */
 
 .skill-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
 }
 
 .skill-item {
-    background-color: #eff6ff;
-    color: #2563eb;
-    border: 1px solid #bfdbfe;
-    padding: 8px 20px;
-    border-radius: 6px;
-    font-size: 14px;
+    background-color: rgba(23, 147, 209, 0.08);
+    color: #1793D1;
+    border: 1px solid rgba(23, 147, 209, 0.2);
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: background-color 0.25s ease,
+                border-color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
 }
+
+.skill-item:hover {
+    background-color: rgba(23, 147, 209, 0.15);
+    border-color: rgba(23, 147, 209, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 147, 209, 0.15);
+}
+
+/* ========================================
+   PENGALAMAN & PENDIDIKAN
+   ======================================== */
 
 .pengalaman-list,
 .pendidikan-list {
@@ -119,21 +258,43 @@ section h2 {
 
 .pengalaman-list li,
 .pendidikan-list li {
-    margin-bottom: 20px;
-    padding-left: 20px;
-    border-left: 3px solid #2563eb;
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    border-left: 3px solid #1793D1;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.25s ease,
+                border-left-color 0.25s ease;
+}
+
+.pengalaman-list li:hover,
+.pendidikan-list li:hover {
+    background-color: rgba(23, 147, 209, 0.05);
+    border-left-color: #4ade80;
+}
+
+.pengalaman-list li strong,
+.pendidikan-list li strong {
+    color: #e0e0e0;
+    font-size: 15px;
 }
 
 .tahun {
-    color: #6b7280;
-    font-size: 14px;
+    color: #505050;
+    font-size: 13px;
+    margin-left: 4px;
 }
 
 .pengalaman-list li p {
-    margin-top: 4px;
-    color: #4b5563;
+    margin-top: 6px;
+    color: #8b8b8b;
     font-size: 14px;
+    line-height: 1.6;
 }
+
+/* ========================================
+   SERTIFIKAT
+   ======================================== */
 
 .sertifikat-list {
     display: flex;
@@ -142,73 +303,125 @@ section h2 {
 }
 
 .sertifikat-card {
-    flex: 1 1 250px;
-    border: 1px solid #bfdbfe;
-    border-radius: 8px;
+    flex: 1 1 220px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
     padding: 16px;
     text-align: center;
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: rgba(255, 255, 255, 0.02);
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.sertifikat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(23, 147, 209, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .sertifikat-gambar {
     width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 8px;
     display: block;
 }
 
 .sertifikat-judul {
     margin-top: 12px;
-    font-size: 15px;
-    color: #333333;
-    font-weight: 600;
+    font-size: 14px;
+    color: #b0b0b0;
+    font-weight: 500;
 }
 
+/* ========================================
+   KONTAK
+   ======================================== */
+
 .kontak-info p {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: #8b8b8b;
 }
 
 .kontak-info a {
-    color: #2563eb;
+    color: #1793D1;
     text-decoration: none;
+    transition: color 0.25s ease;
 }
 
 .kontak-info a:hover {
-    text-decoration: underline;
+    color: #4ade80;
 }
 
+/* ========================================
+   FOOTER
+   ======================================== */
+
 .footer {
-    background-color: #1e293b;
-    color: #ffffff;
+    background-color: #080808;
+    color: #505050;
     text-align: center;
-    padding: 20px 0;
-    font-size: 14px;
+    padding: 24px 0;
+    font-size: 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .nav-menu {
+        gap: 4px 16px;
+    }
+
+    .nav-menu a {
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 600px) {
     .header {
-        padding: 40px 0 30px 0;
+        padding: 50px 0 40px 0;
     }
 
     .foto-profil {
-        width: 90px;
-        height: 90px;
+        width: 100px;
+        height: 100px;
     }
 
     .header .nama {
-        font-size: 24px;
+        font-size: 26px;
     }
 
     .header .status {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     section {
-        padding: 30px 0;
+        padding: 40px 0;
     }
 
     section h2 {
-        font-size: 20px;
+        font-size: 18px;
+    }
+
+    .skill-item {
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+
+    .pengalaman-list li,
+    .pendidikan-list li {
+        padding: 12px 16px;
+    }
+
+    .sertifikat-list {
+        gap: 14px;
+    }
+
+    .sertifikat-card {
+        padding: 12px;
     }
 }

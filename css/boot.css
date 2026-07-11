@@ -301,6 +301,11 @@ body.boot-fade #boot-screen {
     }
 }
 
+/* Fade out untuk logo screen sebelum masuk portfolio */
+body.logo-fade #logo-screen {
+    animation: screenFadeOut 0.8s ease forwards;
+}
+
 /* ========================================
    LOGO SCREEN - SPLASH SCREEN PREMIUM
    ======================================== */
