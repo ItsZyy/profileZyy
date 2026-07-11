@@ -4,13 +4,13 @@
  * Mengatur logika Boot Screen systemd-style untuk portfolio v2 (Arch Linux theme).
  *
  * Fitur:
- *   - Header informasi sistem (Arch Linux, kernel, host, session)
+ *   - Header informasi sistem (ZyyArch Linux, host, session)
  *   - Boot timer yang terus bertambah selama proses boot
  *   - Efek typing (karakter muncul satu per satu) untuk setiap baris
  *   - Status [  OK  ] hijau setelah proses berhasil
  *   - Variasi durasi antar baris agar terasa natural
  *   - Progress bar terisi seiring kemajuan boot
- *   - Berhenti pada "System ready." — TIDAK lanjut ke tahap berikutnya
+ *   - Setelah "System ready." -> fade out -> Logo Splash Screen
  */
 
 (function () {
@@ -367,8 +367,12 @@
                         // Perbarui progress ke 100%
                         updateProgress(100);
 
-                        // Tunggu sebentar lalu resolve
-                        setTimeout(resolve, step.delay);
+                        // Tunggu sebentar lalu resolve, lalu transisi ke logo
+                        setTimeout(function () {
+                            resolve();
+                            // Setelah step terakhir selesai, transisi ke logo screen
+                            setTimeout(transitionToLogoScreen, 200);
+                        }, step.delay);
                     } else if (step.ok) {
                         // Ada status OK: tampilkan loading dots dulu
                         var dots = createLoadingDots();
@@ -406,6 +410,28 @@
         }
 
         return chain;
+    }
+
+    // ========================================
+    // FUNGSI: TRANSISI KE LOGO SCREEN
+    // ========================================
+
+    /**
+     * Melakukan fade out Boot Screen lalu menampilkan Logo Screen.
+     * Dipanggil setelah boot sequence selesai.
+     */
+    function transitionToLogoScreen() {
+        // Tambahkan class untuk fade out boot screen
+        document.body.classList.add('boot-fade');
+
+        // Setelah fade out selesai (800ms), tampilkan logo screen
+        setTimeout(function () {
+            // Sembunyikan boot screen
+            document.body.classList.remove('boot-active');
+
+            // Tampilkan logo screen
+            document.body.classList.add('logo-active');
+        }, 800);
     }
 
     // ========================================

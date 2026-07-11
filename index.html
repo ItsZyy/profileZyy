@@ -33,8 +33,29 @@
         </div>
     </div>
 
-    <!-- Logo Screen: Tampilan logo Arch Linux setelah boot selesai -->
-    <div id="logo-screen"></div>
+    <!-- Logo Screen: Splash screen dengan logo Arch Linux resmi setelah boot -->
+    <div id="logo-screen">
+        <div class="logo-content">
+            <!-- Logo Arch Linux resmi (SVG lokal) -->
+            <div class="logo-svg" id="logo-svg">
+                <img src="assets/arch-logo.svg" alt="Arch Linux Logo" class="logo-img">
+            </div>
+            <!-- Teks di bawah logo (muncul satu per satu) -->
+            <div class="logo-text" id="logo-text">
+                <div class="logo-title" id="logo-title">ZyyArch</div>
+                <div class="logo-subtitle" id="logo-subtitle">Personal Portfolio</div>
+                <div class="logo-name" id="logo-name">Ezy Muhammad Ikbal</div>
+            </div>
+            <!-- Indikator loading minimalis (3 titik biru) -->
+            <div class="logo-loading" id="logo-loading">
+                <div class="logo-loading-dots">
+                    <span class="logo-dot"></span>
+                    <span class="logo-dot"></span>
+                    <span class="logo-dot"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Terminal Login: Terminal untuk input nama user -->
     <div id="terminal-login"></div>
