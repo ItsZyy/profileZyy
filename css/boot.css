@@ -1,0 +1,326 @@
+/*
+ * boot.css
+ * =========
+ * Style untuk Boot Screen systemd-style pada portfolio v2 (Arch Linux theme).
+ *
+ * Fitur visual:
+ *   - Background sangat gelap (#0a0a0a)
+ *   - Accent biru Arch Linux (#1793D1)
+ *   - Hijau untuk status [  OK  ] (#4ade80)
+ *   - Font monospace konsisten (JetBrains Mono / Fira Code)
+ *   - Efek glow halus pada teks penting
+ *   - Boot timer di bagian bawah
+ *   - Progress bar tipis di paling bawah
+ *
+ * Struktur HTML:
+ *   #boot-screen            -> container fullscreen
+ *     .boot-content         -> wrapper utama
+ *       .boot-header        -> info sistem (Arch Linux, kernel, host, session)
+ *       .boot-text          -> area log boot (diisi oleh JS)
+ *       .boot-timer         -> timer boot (diisi oleh JS)
+ *       .boot-progress      -> container progress bar
+ *         .boot-progress-bar -> bar isian
+ *
+ * Selector placeholder (logo-screen, terminal-login, transition-screen)
+ * dipertahankan untuk tahap berikutnya.
+ */
+
+/* ========================================
+   PALETTE WARNA ARCH LINUX
+   ========================================
+   Background : #0a0a0a (sangat gelap)
+   Blue accent: #1793D1 (Arch Linux blue)
+   Green OK   : #4ade80 (status berhasil)
+   Gray text  : #8b8b8b (teks normal)
+   White text : #e0e0e0 (teks terang / header)
+   Dim text   : #505050 (teks sekunder / timestamp)
+   ======================================== */
+
+/* ========================================
+   BODY STATE
+   ======================================== */
+
+/* Portfolio disembunyikan saat boot screen aktif */
+body.boot-active .navbar,
+body.boot-active .header,
+body.boot-active .tentang,
+body.boot-active .skill,
+body.boot-active .pengalaman,
+body.boot-active .pendidikan,
+body.boot-active .sertifikat,
+body.boot-active .kontak,
+body.boot-active .footer {
+    display: none;
+}
+
+/* ========================================
+   BOOT SCREEN - CONTAINER UTAMA
+   ======================================== */
+
+#boot-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0a0a0a;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+body.boot-active #boot-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
+   BOOT CONTENT - WRAPPER
+   ======================================== */
+
+.boot-content {
+    width: 90%;
+    max-width: 720px;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+}
+
+/* ========================================
+   BOOT HEADER - INFORMASI SISTEM
+   ======================================== */
+
+.boot-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1a1a1a;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #8b8b8b;
+    opacity: 0;
+    animation: bootFadeIn 0.4s ease forwards;
+}
+
+/* Baris pertama header - nama distro dengan glow biru */
+.boot-header-title {
+    color: #1793D1;
+    font-size: 15px;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(23, 147, 209, 0.4);
+    margin-bottom: 4px;
+}
+
+/* Label info (Host:, Session:) */
+.boot-header-label {
+    color: #505050;
+}
+
+/* Nilai info (archaxio, Portfolio) */
+.boot-header-value {
+    color: #8b8b8b;
+}
+
+/* Nilai "Portfolio" dengan accent Arch Linux */
+.boot-header-value.accent {
+    color: #1793D1;
+    text-shadow: 0 0 6px rgba(23, 147, 209, 0.3);
+}
+
+/* ========================================
+   BOOT TEXT - AREA LOG BOOT
+   ======================================== */
+
+.boot-text {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+    margin-bottom: 12px;
+    /* Sembunyikan scrollbar untuk tampilan lebih bersih */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.boot-text::-webkit-scrollbar {
+    display: none;
+}
+
+/* ========================================
+   BOOT LINE - SETIAP BARIS LOG
+   ======================================== */
+
+.boot-line {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #8b8b8b;
+    white-space: pre;
+    min-height: 1.8em;
+}
+
+/* Timestamp dalam format [    0.000] */
+.boot-timestamp {
+    color: #505050;
+}
+
+/* Status [  OK  ] - hijau dengan glow halus */
+.boot-status-ok {
+    color: #4ade80;
+    font-weight: bold;
+    text-shadow: 0 0 4px rgba(74, 222, 128, 0.3);
+}
+
+/* Status [....] loading - abu-abu */
+.boot-status-loading {
+    color: #505050;
+}
+
+/* Teks pesan boot */
+.boot-message {
+    color: #8b8b8b;
+}
+
+/* Baris siap / selesai - hijau terang */
+.boot-line.boot-ready {
+    color: #4ade80;
+    font-weight: bold;
+    text-shadow: 0 0 6px rgba(74, 222, 128, 0.4);
+}
+
+/* Baris error (jika diperlukan nanti) */
+.boot-line.boot-error .boot-status-ok {
+    color: #ef4444;
+    text-shadow: 0 0 4px rgba(239, 68, 68, 0.3);
+}
+
+/* ========================================
+   BOOT CURSOR - KURSOR BERKEDIP
+   ======================================== */
+
+.boot-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 14px;
+    background-color: #8b8b8b;
+    vertical-align: text-bottom;
+    margin-left: 1px;
+    animation: bootBlink 0.6s step-end infinite;
+}
+
+.boot-cursor.boot-cursor-hidden {
+    animation: none;
+    opacity: 0;
+    width: 0;
+    margin: 0;
+}
+
+/* ========================================
+   BOOT TIMER
+   ======================================== */
+
+.boot-timer {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 12px;
+    color: #505050;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: bootFadeIn 0.3s ease 0.2s forwards;
+}
+
+/* Timer berhenti saat boot selesai */
+.boot-timer.boot-timer-done {
+    color: #4ade80;
+    text-shadow: 0 0 4px rgba(74, 222, 128, 0.2);
+}
+
+/* ========================================
+   PROGRESS BAR
+   ======================================== */
+
+.boot-progress {
+    width: 100%;
+    height: 2px;
+    background-color: #1a1a1a;
+    overflow: hidden;
+}
+
+.boot-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #1793D1, #4ade80);
+    transition: width 0.3s ease;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes bootFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(1px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bootBlink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Efek fade-in untuk baris log */
+.boot-line {
+    opacity: 0;
+    animation: bootFadeIn 0.2s ease forwards;
+}
+
+/* ========================================
+   LOGO SCREEN (placeholder - tahap berikutnya)
+   ======================================== */
+
+#logo-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+}
+
+/* ========================================
+   TERMINAL LOGIN (placeholder - tahap berikutnya)
+   ======================================== */
+
+#terminal-login {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9997;
+}
+
+/* ========================================
+   TRANSITION SCREEN (placeholder - tahap berikutnya)
+   ======================================== */
+
+#transition-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9996;
+}

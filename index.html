@@ -5,8 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Saya</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/boot.css">
+    <link rel="stylesheet" href="css/arch.css">
 </head>
 <body>
+
+    <!-- ============================================
+         ARCH LINUX V2 - SCREEN PLACEHOLDERS
+         Semua container ini tersembunyi (display: none)
+         dan tidak memengaruhi tampilan website saat ini.
+         Akan diimplementasikan pada tahap berikutnya.
+         ============================================ -->
+
+    <!-- Boot Screen: Layar booting ala Arch Linux (systemd-style) -->
+    <div id="boot-screen">
+        <div class="boot-content">
+            <!-- Informasi sistem di bagian atas -->
+            <div class="boot-header" id="boot-header"></div>
+            <!-- Area teks log boot -->
+            <div class="boot-text" id="boot-text"></div>
+            <!-- Boot timer di bagian bawah -->
+            <div class="boot-timer" id="boot-timer">[    0.000]</div>
+            <!-- Progress bar -->
+            <div class="boot-progress">
+                <div class="boot-progress-bar" id="boot-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo Screen: Tampilan logo Arch Linux setelah boot selesai -->
+    <div id="logo-screen"></div>
+
+    <!-- Terminal Login: Terminal untuk input nama user -->
+    <div id="terminal-login"></div>
+
+    <!-- Transition Screen: Transisi dari terminal ke website utama -->
+    <div id="transition-screen"></div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -144,5 +178,7 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/boot.js"></script>
+    <script src="js/arch.js"></script>
 </body>
 </html>
