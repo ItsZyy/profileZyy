@@ -163,13 +163,17 @@
     }
 
     // ========================================
-    // AI ASSISTANT PANEL (UI Toggle Only)
+    // AI ASSISTANT PANEL (UI + Chat)
     // ========================================
 
     var aiToggle = document.getElementById('ai-toggle');
     var aiPanel = document.getElementById('ai-panel');
     var aiOverlay = document.getElementById('ai-overlay');
     var aiClose = document.getElementById('ai-close');
+    var aiInput = document.getElementById('ai-input');
+    var aiSend = document.getElementById('ai-send');
+    var aiPanelBody = aiPanel ? aiPanel.querySelector('.ai-panel-body') : null;
+    var aiChips = aiPanel ? aiPanel.querySelectorAll('.ai-chip') : [];
 
     function openAiPanel() {
         if (aiPanel) aiPanel.classList.add('active');
@@ -183,9 +187,60 @@
         document.body.style.overflow = '';
     }
 
+    function addMessage(text, isUser) {
+        if (!aiPanelBody) return;
+
+        var msg = document.createElement('div');
+        msg.className = 'ai-msg ' + (isUser ? 'ai-msg-user' : 'ai-msg-bot');
+        msg.textContent = text;
+        aiPanelBody.appendChild(msg);
+
+        aiPanelBody.scrollTop = aiPanelBody.scrollHeight;
+    }
+
+    function handleSend() {
+        if (!aiInput) return;
+        var text = aiInput.value.trim();
+        if (!text) return;
+
+        addMessage(text, true);
+        aiInput.value = '';
+
+        setTimeout(function () {
+            var response = PortfolioAI.generateResponse(text);
+            addMessage(response, false);
+        }, 100);
+    }
+
+    function handleChip(e) {
+        var text = e.target.textContent;
+        if (!text) return;
+
+        addMessage(text, true);
+
+        setTimeout(function () {
+            var response = PortfolioAI.generateResponse(text);
+            addMessage(response, false);
+        }, 100);
+    }
+
     if (aiToggle) aiToggle.addEventListener('click', openAiPanel);
     if (aiClose) aiClose.addEventListener('click', closeAiPanel);
     if (aiOverlay) aiOverlay.addEventListener('click', closeAiPanel);
+    if (aiSend) aiSend.addEventListener('click', handleSend);
+
+    if (aiInput) {
+        aiInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+    }
+
+    aiChips.forEach(function (chip) {
+        chip.addEventListener('click', handleChip);
+    });
 
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeAiPanel();

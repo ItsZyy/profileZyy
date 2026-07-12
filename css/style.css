@@ -1330,6 +1330,13 @@ body.home-page .footer-copy {
     border-bottom-left-radius: 2px;
 }
 
+.ai-msg-user {
+    background: var(--accent);
+    color: #fff;
+    margin-left: auto;
+    border-bottom-right-radius: 2px;
+}
+
 /* Quick Question Chips */
 .ai-chips {
     display: flex;
