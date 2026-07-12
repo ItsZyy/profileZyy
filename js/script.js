@@ -163,6 +163,35 @@
     }
 
     // ========================================
+    // AI ASSISTANT PANEL (UI Toggle Only)
+    // ========================================
+
+    var aiToggle = document.getElementById('ai-toggle');
+    var aiPanel = document.getElementById('ai-panel');
+    var aiOverlay = document.getElementById('ai-overlay');
+    var aiClose = document.getElementById('ai-close');
+
+    function openAiPanel() {
+        if (aiPanel) aiPanel.classList.add('active');
+        if (aiOverlay) aiOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeAiPanel() {
+        if (aiPanel) aiPanel.classList.remove('active');
+        if (aiOverlay) aiOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (aiToggle) aiToggle.addEventListener('click', openAiPanel);
+    if (aiClose) aiClose.addEventListener('click', closeAiPanel);
+    if (aiOverlay) aiOverlay.addEventListener('click', closeAiPanel);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAiPanel();
+    });
+
+    // ========================================
     // EVENT LISTENERS
     // ========================================
 
