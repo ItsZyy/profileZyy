@@ -187,6 +187,14 @@
         document.body.style.overflow = '';
     }
 
+    function scrollToBottom() {
+        if (!aiPanelBody) return;
+        aiPanelBody.scrollTo({
+            top: aiPanelBody.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+
     function addMessage(text, isUser) {
         if (!aiPanelBody) return;
 
@@ -195,7 +203,38 @@
         msg.textContent = text;
         aiPanelBody.appendChild(msg);
 
-        aiPanelBody.scrollTop = aiPanelBody.scrollHeight;
+        void msg.offsetWidth;
+        msg.classList.add('ai-msg-visible');
+
+        scrollToBottom();
+    }
+
+    function createTypingIndicator() {
+        if (!aiPanelBody) return null;
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'ai-msg ai-msg-bot ai-msg-typing';
+
+        var dots = document.createElement('span');
+        dots.className = 'ai-typing-dots';
+        dots.innerHTML = '<span></span><span></span><span></span>';
+
+        wrapper.appendChild(dots);
+        aiPanelBody.appendChild(wrapper);
+        scrollToBottom();
+
+        return wrapper;
+    }
+
+    function removeTypingIndicator(el) {
+        if (!el || !el.parentNode) return;
+        el.parentNode.removeChild(el);
+    }
+
+    function updateSendButton() {
+        if (!aiInput || !aiSend) return;
+        var hasText = aiInput.value.trim().length > 0;
+        aiSend.disabled = !hasText;
     }
 
     function handleSend() {
@@ -205,11 +244,16 @@
 
         addMessage(text, true);
         aiInput.value = '';
+        updateSendButton();
+        aiInput.focus();
+
+        var typing = createTypingIndicator();
 
         setTimeout(function () {
             var response = PortfolioAI.generateResponse(text);
+            removeTypingIndicator(typing);
             addMessage(response, false);
-        }, 100);
+        }, 600);
     }
 
     function handleChip(e) {
@@ -218,10 +262,13 @@
 
         addMessage(text, true);
 
+        var typing = createTypingIndicator();
+
         setTimeout(function () {
             var response = PortfolioAI.generateResponse(text);
+            removeTypingIndicator(typing);
             addMessage(response, false);
-        }, 100);
+        }, 600);
     }
 
     if (aiToggle) aiToggle.addEventListener('click', openAiPanel);
@@ -231,11 +278,14 @@
 
     if (aiInput) {
         aiInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 handleSend();
             }
         });
+
+        aiInput.addEventListener('input', updateSendButton);
+        updateSendButton();
     }
 
     aiChips.forEach(function (chip) {

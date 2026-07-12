@@ -1312,6 +1312,7 @@ body.home-page .footer-copy {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    scroll-behavior: smooth;
 }
 
 /* Message */
@@ -1321,6 +1322,14 @@ body.home-page .footer-copy {
     padding: 14px 16px;
     border-radius: var(--radius-md);
     max-width: 90%;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.ai-msg-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .ai-msg-bot {
@@ -1335,6 +1344,46 @@ body.home-page .footer-copy {
     color: #fff;
     margin-left: auto;
     border-bottom-right-radius: 2px;
+}
+
+/* Typing Indicator */
+.ai-msg-typing {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 20px;
+}
+
+.ai-typing-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.ai-typing-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    animation: aiDotBounce 1.2s infinite ease-in-out;
+}
+
+.ai-typing-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.ai-typing-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes aiDotBounce {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    30% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
 }
 
 /* Quick Question Chips */
@@ -1361,6 +1410,22 @@ body.home-page .footer-copy {
 .ai-chip:hover {
     background: rgba(23, 147, 209, 0.2);
     border-color: var(--accent);
+}
+
+.ai-chip:active {
+    transform: scale(0.95);
+    background: rgba(23, 147, 209, 0.3);
+}
+
+@media (max-width: 480px) {
+    .ai-chips {
+        gap: 6px;
+    }
+
+    .ai-chip {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
 }
 
 /* Panel Footer */
@@ -1411,6 +1476,12 @@ body.home-page .footer-copy {
 
 .ai-send:hover {
     background: var(--accent-hover);
+}
+
+.ai-send:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: var(--accent);
 }
 
 /* ========================================
