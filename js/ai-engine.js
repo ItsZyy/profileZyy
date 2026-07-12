@@ -304,9 +304,27 @@ var PortfolioAI = (function () {
     // LOAD KNOWLEDGE BASE
     // ========================================
 
+    var _readyResolve = null;
+    var _readyPromise = new Promise(function (resolve) {
+        _readyResolve = resolve;
+    });
+
     function loadKnowledge() {
+        console.log('[PortfolioAI] Loading knowledge base...');
+
+        if (window.location.protocol === 'file:') {
+            console.error('[PortfolioAI] ERROR: Dibuka via file:// protocol.');
+            console.error('[PortfolioAI] fetch() tidak bekerja tanpa web server.');
+            console.error('[PortfolioAI] Gunakan: python -m http.server 8000');
+            console.error('[PortfolioAI] Lalu buka: http://localhost:8000');
+            _error = 'file:// detected. Gunakan web server.';
+            _readyResolve(false);
+            return Promise.resolve(null);
+        }
+
         return fetch('data/portfolio.json')
             .then(function (response) {
+                console.log('[PortfolioAI] Fetch response status:', response.status);
                 if (!response.ok) {
                     throw new Error('HTTP ' + response.status + ': ' + response.statusText);
                 }
@@ -317,6 +335,8 @@ var PortfolioAI = (function () {
                 _ready = true;
                 _error = null;
                 console.log('[PortfolioAI] Knowledge base loaded successfully.');
+                console.log('[PortfolioAI] Sections:', Object.keys(json).join(', '));
+                _readyResolve(true);
                 return _data;
             })
             .catch(function (err) {
@@ -324,8 +344,14 @@ var PortfolioAI = (function () {
                 _ready = false;
                 _error = err.message || 'Gagal memuat data portfolio.';
                 console.error('[PortfolioAI] Failed to load knowledge base:', _error);
+                console.error('[PortfolioAI] Pastikan file data/portfolio.json ada dan server berjalan.');
+                _readyResolve(false);
                 return null;
             });
+    }
+
+    function waitForReady() {
+        return _readyPromise;
     }
 
     // ========================================
@@ -554,6 +580,8 @@ var PortfolioAI = (function () {
 
     function generateResponse(input) {
         if (!_ready || !_data) {
+            console.warn('[PortfolioAI] generateResponse called but knowledge base not ready.');
+            console.warn('[PortfolioAI] isReady:', _ready, '| data:', _data ? 'exists' : 'null');
             return 'Knowledge base belum siap. Silakan coba lagi nanti.';
         }
 
@@ -562,7 +590,9 @@ var PortfolioAI = (function () {
             return 'Silakan ketik pertanyaan tentang Ezy.';
         }
 
+        console.log('[PortfolioAI] Detecting intent for:', trimmed);
         var intent = detectIntent(trimmed);
+        console.log('[PortfolioAI] Intent detected:', intent);
 
         if (!intent) {
             return 'Maaf, saya belum memahami pertanyaan tersebut.\n\n'
@@ -576,8 +606,10 @@ var PortfolioAI = (function () {
                  + '- Kontak / media sosial';
         }
 
+        console.log('[PortfolioAI] Generating response for:', intent);
         var data = getSectionData(intent);
         var response = formatResponse(intent, data);
+        console.log('[PortfolioAI] Response generated, length:', (response || '').length);
 
         return response || NO_DATA_MSG;
     }
@@ -589,6 +621,7 @@ var PortfolioAI = (function () {
 
     return {
         loadKnowledge: loadKnowledge,
+        waitForReady: waitForReady,
         getKnowledge: getKnowledge,
         isReady: isReady,
         getError: getError,

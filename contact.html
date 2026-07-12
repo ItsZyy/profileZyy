@@ -122,34 +122,24 @@
     </footer>
 
     <!-- AI Assistant Panel -->
-    <div class="ai-overlay" id="ai-overlay"></div>
-    <aside class="ai-panel" id="ai-panel">
+    <div class="ai-overlay" id="ai-overlay" aria-hidden="true"></div>
+    <aside class="ai-panel" id="ai-panel" role="dialog" aria-label="AI Assistant" aria-hidden="true">
         <div class="ai-panel-header">
             <div class="ai-panel-title">
-                <span class="ai-panel-icon">✦</span>
+                <span class="ai-panel-icon" aria-hidden="true">✦</span>
                 <div>
                     <div class="ai-panel-name">AI Assistant</div>
                     <div class="ai-panel-status">Online</div>
                 </div>
             </div>
-            <button class="ai-panel-close" id="ai-close">&times;</button>
+            <button class="ai-panel-close" id="ai-close" aria-label="Tutup panel">&times;</button>
         </div>
-        <div class="ai-panel-body">
-            <div class="ai-msg ai-msg-bot">
-                Halo! Saya adalah AI Assistant yang dapat membantu Anda mengenal portfolio Ezy Muhammad Ikbal. Silakan ajukan pertanyaan.
-            </div>
-            <div class="ai-chips">
-                <button class="ai-chip">Tentang Saya</button>
-                <button class="ai-chip">Keahlian</button>
-                <button class="ai-chip">Project</button>
-                <button class="ai-chip">Pengalaman</button>
-                <button class="ai-chip">Sertifikat</button>
-                <button class="ai-chip">Kontak</button>
-            </div>
+        <div class="ai-panel-body" id="ai-panel-body" aria-live="polite">
         </div>
         <div class="ai-panel-footer">
-            <input type="text" class="ai-input" placeholder="Tanyakan sesuatu..." id="ai-input">
-            <button class="ai-send" id="ai-send">Kirim</button>
+            <label for="ai-input" class="sr-only">Ketik pertanyaan</label>
+            <input type="text" class="ai-input" placeholder="Tanyakan sesuatu..." id="ai-input" autocomplete="off">
+            <button class="ai-send" id="ai-send" aria-label="Kirim pesan" disabled>Kirim</button>
         </div>
     </aside>
 

@@ -172,20 +172,22 @@
     var aiClose = document.getElementById('ai-close');
     var aiInput = document.getElementById('ai-input');
     var aiSend = document.getElementById('ai-send');
-    var aiPanelBody = aiPanel ? aiPanel.querySelector('.ai-panel-body') : null;
-    var aiChips = aiPanel ? aiPanel.querySelectorAll('.ai-chip') : [];
+    var aiPanelBody = document.getElementById('ai-panel-body');
 
-    function openAiPanel() {
-        if (aiPanel) aiPanel.classList.add('active');
-        if (aiOverlay) aiOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+    var aiOpened = false;
+    var aiReady = false;
 
-    function closeAiPanel() {
-        if (aiPanel) aiPanel.classList.remove('active');
-        if (aiOverlay) aiOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+    PortfolioAI.waitForReady().then(function (ok) {
+        aiReady = ok;
+        if (ok) {
+            console.log('[AI Panel] Knowledge base is ready.');
+        } else {
+            console.warn('[AI Panel] Knowledge base failed to load.');
+        }
+    });
+
+    var WELCOME_TEXT = 'Halo! Saya adalah AI Assistant yang dapat membantu Anda mengenal portfolio Ezy Muhammad Ikbal. Silakan ajukan pertanyaan.';
+    var CHIP_LABELS = ['Tentang Saya', 'Keahlian', 'Project', 'Pengalaman', 'Sertifikat', 'Kontak'];
 
     function scrollToBottom() {
         if (!aiPanelBody) return;
@@ -200,6 +202,8 @@
 
         var msg = document.createElement('div');
         msg.className = 'ai-msg ' + (isUser ? 'ai-msg-user' : 'ai-msg-bot');
+        msg.setAttribute('role', 'article');
+        msg.setAttribute('aria-label', isUser ? 'Anda' : 'AI');
         msg.textContent = text;
         aiPanelBody.appendChild(msg);
 
@@ -214,6 +218,8 @@
 
         var wrapper = document.createElement('div');
         wrapper.className = 'ai-msg ai-msg-bot ai-msg-typing';
+        wrapper.setAttribute('role', 'status');
+        wrapper.setAttribute('aria-label', 'AI sedang mengetik');
 
         var dots = document.createElement('span');
         dots.className = 'ai-typing-dots';
@@ -249,11 +255,23 @@
 
         var typing = createTypingIndicator();
 
-        setTimeout(function () {
+        function respond() {
+            console.log('[AI Panel] Generating response...');
             var response = PortfolioAI.generateResponse(text);
+            console.log('[AI Panel] Response ready.');
             removeTypingIndicator(typing);
             addMessage(response, false);
-        }, 600);
+        }
+
+        if (aiReady) {
+            setTimeout(respond, 600);
+        } else {
+            console.log('[AI Panel] Waiting for knowledge base...');
+            PortfolioAI.waitForReady().then(function () {
+                aiReady = true;
+                setTimeout(respond, 300);
+            });
+        }
     }
 
     function handleChip(e) {
@@ -264,11 +282,77 @@
 
         var typing = createTypingIndicator();
 
-        setTimeout(function () {
+        function respond() {
+            console.log('[AI Panel] Generating response...');
             var response = PortfolioAI.generateResponse(text);
+            console.log('[AI Panel] Response ready.');
             removeTypingIndicator(typing);
             addMessage(response, false);
-        }, 600);
+        }
+
+        if (aiReady) {
+            setTimeout(respond, 600);
+        } else {
+            console.log('[AI Panel] Waiting for knowledge base...');
+            PortfolioAI.waitForReady().then(function () {
+                aiReady = true;
+                setTimeout(respond, 300);
+            });
+        }
+    }
+
+    function showWelcome() {
+        if (!aiPanelBody) return;
+
+        addMessage(WELCOME_TEXT, false);
+
+        var chipsWrap = document.createElement('div');
+        chipsWrap.className = 'ai-chips';
+        chipsWrap.setAttribute('role', 'group');
+        chipsWrap.setAttribute('aria-label', 'Pertanyaan cepat');
+
+        CHIP_LABELS.forEach(function (label) {
+            var btn = document.createElement('button');
+            btn.className = 'ai-chip';
+            btn.textContent = label;
+            btn.setAttribute('aria-label', 'Tanyakan: ' + label);
+            btn.addEventListener('click', handleChip);
+            chipsWrap.appendChild(btn);
+        });
+
+        aiPanelBody.appendChild(chipsWrap);
+        scrollToBottom();
+    }
+
+    function openAiPanel() {
+        if (aiPanel) {
+            aiPanel.classList.add('active');
+            aiPanel.setAttribute('aria-hidden', 'false');
+        }
+        if (aiOverlay) {
+            aiOverlay.classList.add('active');
+            aiOverlay.setAttribute('aria-hidden', 'false');
+        }
+        document.body.style.overflow = 'hidden';
+
+        if (!aiOpened) {
+            aiOpened = true;
+            showWelcome();
+        }
+
+        if (aiInput) aiInput.focus();
+    }
+
+    function closeAiPanel() {
+        if (aiPanel) {
+            aiPanel.classList.remove('active');
+            aiPanel.setAttribute('aria-hidden', 'true');
+        }
+        if (aiOverlay) {
+            aiOverlay.classList.remove('active');
+            aiOverlay.setAttribute('aria-hidden', 'true');
+        }
+        document.body.style.overflow = '';
     }
 
     if (aiToggle) aiToggle.addEventListener('click', openAiPanel);
@@ -288,12 +372,28 @@
         updateSendButton();
     }
 
-    aiChips.forEach(function (chip) {
-        chip.addEventListener('click', handleChip);
-    });
-
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeAiPanel();
+
+        if (e.key === 'Tab' && aiPanel && aiPanel.classList.contains('active')) {
+            var focusable = aiPanel.querySelectorAll('button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])');
+            if (focusable.length === 0) return;
+
+            var first = focusable[0];
+            var last = focusable[focusable.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        }
     });
 
     // ========================================
