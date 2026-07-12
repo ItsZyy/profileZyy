@@ -1,0 +1,118 @@
+{
+  "profile": {
+    "name": "Ezy Muhamad Ikbal",
+    "brand": "ZyyArch",
+    "title": "Siswa SMKN 2 Subang",
+    "major": "Rekayasa Perangkat Lunak",
+    "status": "Aktif",
+    "image": "assets/profile.jpg",
+    "language": "id"
+  },
+  "about": "Saya seorang siswa SMKN 2 subang jurusan Rekayasa Perangkat Lunak yang sedang belajar menjadi pengembang web/aplikasi. Saya memiliki ketertarikan besar dalam dunia pemrograman dan teknologi informasi. Saat ini saya aktif mengembangkan kemampuan di bidang front-end maupun back-end.",
+  "skills": [
+    {
+      "name": "HTML5",
+      "icon": "assets/icons/html5.svg"
+    },
+    {
+      "name": "CSS3",
+      "icon": "assets/icons/css3.svg"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "assets/icons/javascript.svg"
+    },
+    {
+      "name": "PHP",
+      "icon": "assets/icons/php.svg"
+    },
+    {
+      "name": "Laravel",
+      "icon": "assets/icons/laravel.svg"
+    },
+    {
+      "name": "MySQL",
+      "icon": "assets/icons/mysql.svg"
+    },
+    {
+      "name": "Git",
+      "icon": "assets/icons/git.svg"
+    },
+    {
+      "name": "GitHub",
+      "icon": "assets/icons/github.svg"
+    },
+    {
+      "name": "Linux",
+      "icon": "assets/icons/linux.svg"
+    },
+    {
+      "name": "Arch Linux",
+      "icon": "assets/icons/linux.svg"
+    },
+    {
+      "name": "VS Code",
+      "icon": "assets/icons/vscode.svg"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Praktik Kerja Lapangan",
+      "organization": "Universitas Subang",
+      "period": "April - Juni 2026",
+      "description": "Membantu bagian Administrasi Universitas dalam mengelola sistem informasi dan persuratan."
+    },
+    {
+      "title": "Anggota Pastebrata",
+      "organization": "Paskibra SMKN 2 Subang",
+      "period": "2024 - Sekarang",
+      "description": "Bertanggung jawab di bidang IT mengelola dan membuat jadwal organisasi dan membuat surat serta membantu dokumentasi kegiatan."
+    }
+  ],
+  "education": [
+    {
+      "institution": "SMKN 2 Subang",
+      "detail": "Jurusan Rekayasa Perangkat Lunak",
+      "period": "2024 - Sekarang"
+    },
+    {
+      "institution": "MTs Daarul Ma'arif Purwakarta",
+      "detail": "",
+      "period": "2021 - 2024"
+    },
+    {
+      "institution": "SDN 2 Sukajadi",
+      "detail": "",
+      "period": "2015 - 2021"
+    }
+  ],
+  "projects": [],
+  "certificates": [
+    {
+      "title": "Sertifikat Dicoding",
+      "issuer": "Dicoding Academy",
+      "image": "assets/sertifikat dicoding.jpeg"
+    },
+    {
+      "title": "Sertifikat Lomba Debat",
+      "issuer": "Competition",
+      "image": "assets/sertifikat debat.jpeg"
+    },
+    {
+      "title": "Sertifikat PKL",
+      "issuer": "Internship",
+      "image": "assets/sertifikat pkl.jpeg"
+    }
+  ],
+  "contact": {
+    "email": "ezymikbal@gmail.com",
+    "github": {
+      "username": "@ItsZyy",
+      "url": "https://github.com/ItsZyy"
+    },
+    "instagram": {
+      "username": "@zyymikbll_",
+      "url": "https://www.instagram.com/zyymikbll_"
+    }
+  }
+}
