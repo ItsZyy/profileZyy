@@ -54,7 +54,7 @@
 
     /* Spacing */
     --section-gap: 100px;
-    --container-max: 900px;
+    --container-max: 1000px;
 
     /* Transitions */
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -181,32 +181,21 @@
 /* Stagger children inside sections */
 .reveal-ready.revealed .timeline-card,
 .reveal-ready.revealed .cert-card,
-.reveal-ready.revealed .contact-card,
-.reveal-ready.revealed .skill-chip {
+.reveal-ready.revealed .contact-card {
     animation: fadeSlideUp 0.5s var(--ease) both;
 }
 
 .reveal-ready.revealed .timeline-card:nth-child(1),
 .reveal-ready.revealed .cert-card:nth-child(1),
-.reveal-ready.revealed .contact-card:nth-child(1),
-.reveal-ready.revealed .skill-chip:nth-child(1) { animation-delay: 0.05s; }
+.reveal-ready.revealed .contact-card:nth-child(1) { animation-delay: 0.05s; }
 
 .reveal-ready.revealed .timeline-card:nth-child(2),
 .reveal-ready.revealed .cert-card:nth-child(2),
-.reveal-ready.revealed .contact-card:nth-child(2),
-.reveal-ready.revealed .skill-chip:nth-child(2) { animation-delay: 0.1s; }
+.reveal-ready.revealed .contact-card:nth-child(2) { animation-delay: 0.1s; }
 
 .reveal-ready.revealed .timeline-card:nth-child(3),
 .reveal-ready.revealed .cert-card:nth-child(3),
-.reveal-ready.revealed .contact-card:nth-child(3),
-.reveal-ready.revealed .skill-chip:nth-child(3) { animation-delay: 0.15s; }
-
-.reveal-ready.revealed .skill-chip:nth-child(4) { animation-delay: 0.2s; }
-.reveal-ready.revealed .skill-chip:nth-child(5) { animation-delay: 0.25s; }
-.reveal-ready.revealed .skill-chip:nth-child(6) { animation-delay: 0.3s; }
-.reveal-ready.revealed .skill-chip:nth-child(7) { animation-delay: 0.35s; }
-.reveal-ready.revealed .skill-chip:nth-child(8) { animation-delay: 0.4s; }
-.reveal-ready.revealed .skill-chip:nth-child(9) { animation-delay: 0.45s; }
+.reveal-ready.revealed .contact-card:nth-child(3) { animation-delay: 0.15s; }
 
 @keyframes fadeSlideUp {
     from {

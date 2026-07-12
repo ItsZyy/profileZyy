@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Profil Saya</title>
+    <title>Tentang - Profil Saya</title>
     <link rel="stylesheet" href="css/arch.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/boot.css">
@@ -20,11 +20,12 @@
                 </a>
 
                 <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="certificates.html">Certificates</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about.html" class="active">Tentang</a></li>
+                    <li><a href="experience.html">Pengalaman</a></li>
+                    <li><a href="projects.html">Proyek</a></li>
+                    <li><a href="certificates.html">Sertifikat</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
                 </ul>
 
                 <button class="nav-hamburger" aria-label="Menu">
@@ -37,118 +38,88 @@
     </nav>
 
     <div class="nav-mobile">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="certificates.html">Certificates</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html">Beranda</a>
+        <a href="about.html" class="active">Tentang</a>
+        <a href="experience.html">Pengalaman</a>
+        <a href="projects.html">Proyek</a>
+        <a href="certificates.html">Sertifikat</a>
+        <a href="contact.html">Kontak</a>
     </div>
 
     <!-- Page Hero -->
     <div class="page-hero">
         <div class="container">
             <span class="section-label">cat /etc/about</span>
-            <h1 class="page-hero-title">Tentang Saya</h1>
-            <p class="page-hero-subtitle">Skills, pengalaman, dan perjalanan pendidikan</p>
+            <h1 class="page-hero-title">Tentang</h1>
+            <p class="page-hero-subtitle">Profil, keahlian, dan minat pengembangan</p>
         </div>
     </div>
+
+    <!-- Tentang Saya -->
+    <section class="section" id="tentang">
+        <div class="container">
+            <p class="about-text">
+                Halo! Saya seorang siswa SMKN 2 subang jurusan Rekayasa Perangkat Lunak
+                yang sedang belajar menjadi pengembang web/aplikasi. Saya memiliki
+                ketertarikan besar dalam dunia pemrograman dan teknologi
+                informasi. Saat ini saya aktif mengembangkan kemampuan di
+                bidang front-end maupun back-end.
+            </p>
+        </div>
+    </section>
 
     <!-- Skill -->
     <section class="section" id="skill">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">neofetch --skills</span>
-                <h2 class="section-title">Skill</h2>
+                <h2 class="section-title">Keahlian</h2>
             </div>
+
             <div class="skill-grid">
-                <div class="skill-chip">
-                    <img src="assets/icons/html5.svg" alt="HTML5" class="skill-icon" width="20" height="20">
-                    HTML
+                <div class="skill-card" style="--d:0">
+                    <img src="assets/icons/html5.svg" alt="HTML5" class="skill-card-icon">
+                    <span class="skill-card-name">HTML5</span>
                 </div>
-                <div class="skill-chip">
-                    <img src="assets/icons/css3.svg" alt="CSS3" class="skill-icon" width="20" height="20">
-                    CSS
+                <div class="skill-card" style="--d:1">
+                    <img src="assets/icons/css3.svg" alt="CSS3" class="skill-card-icon">
+                    <span class="skill-card-name">CSS3</span>
                 </div>
-                <div class="skill-chip">
-                    <img src="assets/icons/javascript.svg" alt="JavaScript" class="skill-icon" width="20" height="20">
-                    JavaScript
+                <div class="skill-card" style="--d:2">
+                    <img src="assets/icons/javascript.svg" alt="JavaScript" class="skill-card-icon">
+                    <span class="skill-card-name">JavaScript</span>
                 </div>
-                <div class="skill-chip">
-                    <img src="assets/icons/php.svg" alt="PHP" class="skill-icon" width="20" height="20">
-                    PHP
+                <div class="skill-card" style="--d:3">
+                    <img src="assets/icons/php.svg" alt="PHP" class="skill-card-icon">
+                    <span class="skill-card-name">PHP</span>
                 </div>
-                <div class="skill-chip">
-                    <img src="assets/icons/mariadb.svg" alt="MariaDB" class="skill-icon" width="20" height="20">
-                    MariaDB
+                <div class="skill-card" style="--d:4">
+                    <img src="assets/icons/laravel.svg" alt="Laravel" class="skill-card-icon">
+                    <span class="skill-card-name">Laravel</span>
                 </div>
-                <div class="skill-chip">
-                    <img src="assets/icons/mysql.svg" alt="MySQL" class="skill-icon" width="20" height="20">
-                    MySQL
+                <div class="skill-card" style="--d:5">
+                    <img src="assets/icons/mysql.svg" alt="MySQL" class="skill-card-icon">
+                    <span class="skill-card-name">MySQL</span>
                 </div>
-                <div class="skill-chip">
-                    <img src="assets/icons/git.svg" alt="Git" class="skill-icon" width="20" height="20">
-                    Git
+                <div class="skill-card" style="--d:6">
+                    <img src="assets/icons/git.svg" alt="Git" class="skill-card-icon">
+                    <span class="skill-card-name">Git</span>
                 </div>
-                <div class="skill-chip">
-                    <img src="assets/icons/github.svg" alt="GitHub" class="skill-icon" width="20" height="20">
-                    GitHub
+                <div class="skill-card" style="--d:7">
+                    <img src="assets/icons/github.svg" alt="GitHub" class="skill-card-icon">
+                    <span class="skill-card-name">GitHub</span>
                 </div>
-                <div class="skill-chip">
-                    <img src="assets/icons/linux.svg" alt="Linux" class="skill-icon" width="20" height="20">
-                    Linux
+                <div class="skill-card" style="--d:8">
+                    <img src="assets/icons/linux.svg" alt="Linux" class="skill-card-icon">
+                    <span class="skill-card-name">Linux</span>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pengalaman -->
-    <section class="section" id="pengalaman">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">journalctl --experience</span>
-                <h2 class="section-title">Pengalaman</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-card">
-                    <div class="timeline-card-header">
-                        <span class="timeline-card-title">Praktik Kerja Lapangan</span>
-                        <span class="timeline-card-org">Universitas Subang</span>
-                        <span class="timeline-card-date">april-juni 2026</span>
-                    </div>
-                    <p class="timeline-card-desc">Membantu bagian Administrasi Universitas dalam mengelola sistem informasi dan persuratan.</p>
+                <div class="skill-card" style="--d:9">
+                    <img src="assets/arch-logo.svg" alt="Arch Linux" class="skill-card-icon">
+                    <span class="skill-card-name">Arch Linux</span>
                 </div>
-                <div class="timeline-card">
-                    <div class="timeline-card-header">
-                        <span class="timeline-card-title">Anggota Pastebrata</span>
-                        <span class="timeline-card-org">Paskibra SMKN 2 Subang</span>
-                        <span class="timeline-card-date">2024 - Sekarang</span>
-                    </div>
-                    <p class="timeline-card-desc">Bertanggung jawab di bidang IT mengelola dan membuat jadwal organisasi dan membuat surat serta membantu dokumentasi kegiatan.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pendidikan -->
-    <section class="section" id="pendidikan">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">ls /etc/pendidikan</span>
-                <h2 class="section-title">Pendidikan</h2>
-            </div>
-            <div class="timeline">
-                <div class="pendidikan-card">
-                    <div class="pendidikan-card-title">SMKN 2 Subang</div>
-                    <div class="pendidikan-card-detail">Jurusan Rekayasa Perangkat Lunak</div>
-                    <span class="pendidikan-card-date">2024 - Sekarang</span>
-                </div>
-                <div class="pendidikan-card">
-                    <div class="pendidikan-card-title">MTs Daarul Ma'arif Purwakarta</div>
-                    <span class="pendidikan-card-date">2021 - 2024</span>
-                </div>
-                <div class="pendidikan-card">
-                    <div class="pendidikan-card-title">SDN 2 Sukajadi</div>
-                    <span class="pendidikan-card-date">2015 - 2021</span>
+                <div class="skill-card" style="--d:10">
+                    <img src="assets/icons/vscode.svg" alt="VS Code" class="skill-card-icon">
+                    <span class="skill-card-name">VS Code</span>
                 </div>
             </div>
         </div>
@@ -163,15 +134,16 @@
                     <span class="footer-brand-text">ZyyArch</span>
                 </div>
                 <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="projects.html">Projects</a>
-                    <a href="certificates.html">Certificates</a>
-                    <a href="contact.html">Contact</a>
+                    <a href="index.html">Beranda</a>
+                    <a href="about.html">Tentang</a>
+                    <a href="experience.html">Pengalaman</a>
+                    <a href="projects.html">Proyek</a>
+                    <a href="certificates.html">Sertifikat</a>
+                    <a href="contact.html">Kontak</a>
                 </div>
             </div>
             <div class="footer-copy">
-                &copy; <span id="tahun-copyright"></span> <span class="mono">Ezy Muhamad Ikbal</span>. All rights reserved.
+                &copy; <span id="tahun-copyright"></span> <span class="mono">Ezy Muhamad Ikbal</span>. Hak cipta dilindungi.
             </div>
         </div>
     </footer>

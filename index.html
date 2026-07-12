@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/boot.css">
 </head>
-<body>
+<body class="home-page">
 
     <!-- Boot Screen -->
     <div id="boot-screen">
@@ -56,11 +56,12 @@
                 </a>
 
                 <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="certificates.html">Certificates</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html" class="active">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="experience.html">Pengalaman</a></li>
+                    <li><a href="projects.html">Proyek</a></li>
+                    <li><a href="certificates.html">Sertifikat</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
                 </ul>
 
                 <button class="nav-hamburger" aria-label="Menu">
@@ -74,44 +75,36 @@
 
     <!-- Mobile Menu -->
     <div class="nav-mobile">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="certificates.html">Certificates</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html">Beranda</a>
+        <a href="about.html">Tentang</a>
+        <a href="experience.html">Pengalaman</a>
+        <a href="projects.html">Proyek</a>
+        <a href="certificates.html">Sertifikat</a>
+        <a href="contact.html">Kontak</a>
     </div>
 
     <!-- Hero Section -->
     <header class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <img src="assets/profile.jpg" alt="Foto Profil" class="hero-avatar">
-                <h1 class="hero-name">Ezy Muhamad Ikbal</h1>
-                <p class="hero-status">
-                    Siswa SMKN 2 Subang jurusan Rekayasa Perangkat Lunak
-                    <br>
-                    <span class="mono-tag">~/portfolio $</span>
-                </p>
+                <div class="hero-left">
+                    <span class="hero-badge mono-tag">~/portfolio</span>
+                    <h1 class="hero-name">Ezy Muhamad Ikbal</h1>
+                    <p class="hero-status">
+                        Siswa SMKN 2 Subang jurusan Rekayasa Perangkat Lunak. Tertarik dalam
+                        pengembangan web dan teknologi informasi.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="about.html" class="btn btn-primary">Tentang Saya</a>
+                        <a href="contact.html" class="btn btn-ghost">Hubungi Saya</a>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <img src="assets/profile.jpg" alt="Foto Profil" class="hero-avatar">
+                </div>
             </div>
         </div>
     </header>
-
-    <!-- Tentang Saya -->
-    <section class="section" id="tentang">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">whoami</span>
-                <h2 class="section-title">Tentang Saya</h2>
-            </div>
-            <p class="about-text">
-                Halo! Saya seorang siswa SMKN 2 subang jurusan Rekayasa Perangkat Lunak
-                yang sedang belajar menjadi pengembang web/aaplikasi. Saya memiliki
-                ketertarikan besar dalam dunia pemrograman dan teknologi
-                informasi. Saat ini saya aktif mengembangkan kemampuan di
-                bidang front-end maupun back-end.
-            </p>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -122,15 +115,16 @@
                     <span class="footer-brand-text">ZyyArch</span>
                 </div>
                 <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="projects.html">Projects</a>
-                    <a href="certificates.html">Certificates</a>
-                    <a href="contact.html">Contact</a>
+                    <a href="index.html">Beranda</a>
+                    <a href="about.html">Tentang</a>
+                    <a href="experience.html">Pengalaman</a>
+                    <a href="projects.html">Proyek</a>
+                    <a href="certificates.html">Sertifikat</a>
+                    <a href="contact.html">Kontak</a>
                 </div>
             </div>
             <div class="footer-copy">
-                &copy; <span id="tahun-copyright"></span> <span class="mono">Ezy Muhamad Ikbal</span>. All rights reserved.
+                &copy; <span id="tahun-copyright"></span> <span class="mono">Ezy Muhamad Ikbal</span>. Hak cipta dilindungi.
             </div>
         </div>
     </footer>

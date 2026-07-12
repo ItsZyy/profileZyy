@@ -145,6 +145,24 @@
     }
 
     // ========================================
+    // SKILL CARDS - FLOAT PAUSE ON HOVER
+    // ========================================
+
+    function initSkillFloat() {
+        var cards = document.querySelectorAll('.skill-card');
+        if (!cards.length) return;
+
+        cards.forEach(function (card) {
+            card.addEventListener('mouseenter', function () {
+                card.style.animationPlayState = 'paused';
+            });
+            card.addEventListener('mouseleave', function () {
+                card.style.animationPlayState = 'running';
+            });
+        });
+    }
+
+    // ========================================
     // EVENT LISTENERS
     // ========================================
 
@@ -158,6 +176,7 @@
         handleNavbarScroll();
         setActiveMenu();
         initScrollReveal();
+        initSkillFloat();
     });
 
     // Expose markBootShown globally agar boot.js bisa memanggil

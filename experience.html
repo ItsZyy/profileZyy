@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengalaman - Profil Saya</title>
+    <link rel="stylesheet" href="css/arch.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/boot.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-inner">
+                <a href="index.html" class="nav-brand">
+                    <img src="assets/arch-logo.svg" alt="Arch" class="nav-brand-icon">
+                    <span class="nav-brand-text">ZyyArch</span>
+                </a>
+
+                <ul class="nav-menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="experience.html" class="active">Pengalaman</a></li>
+                    <li><a href="projects.html">Proyek</a></li>
+                    <li><a href="certificates.html">Sertifikat</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
+                </ul>
+
+                <button class="nav-hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="nav-mobile">
+        <a href="index.html">Beranda</a>
+        <a href="about.html">Tentang</a>
+        <a href="experience.html" class="active">Pengalaman</a>
+        <a href="projects.html">Proyek</a>
+        <a href="certificates.html">Sertifikat</a>
+        <a href="contact.html">Kontak</a>
+    </div>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="section-label">journalctl --timeline</span>
+            <h1 class="page-hero-title">Pengalaman</h1>
+            <p class="page-hero-subtitle">Perjalanan pendidikan dan pengalaman profesional</p>
+        </div>
+    </div>
+
+    <!-- Pendidikan -->
+    <section class="section" id="pendidikan">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">ls /etc/pendidikan</span>
+                <h2 class="section-title">Pendidikan</h2>
+            </div>
+            <div class="timeline">
+                <div class="pendidikan-card">
+                    <div class="pendidikan-card-title">SMKN 2 Subang</div>
+                    <div class="pendidikan-card-detail">Jurusan Rekayasa Perangkat Lunak</div>
+                    <span class="pendidikan-card-date">2024 - Sekarang</span>
+                </div>
+                <div class="pendidikan-card">
+                    <div class="pendidikan-card-title">MTs Daarul Ma'arif Purwakarta</div>
+                    <span class="pendidikan-card-date">2021 - 2024</span>
+                </div>
+                <div class="pendidikan-card">
+                    <div class="pendidikan-card-title">SDN 2 Sukajadi</div>
+                    <span class="pendidikan-card-date">2015 - 2021</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pengalaman -->
+    <section class="section" id="pengalaman">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">journalctl --experience</span>
+                <h2 class="section-title">Pengalaman</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-card">
+                    <div class="timeline-card-header">
+                        <span class="timeline-card-title">Praktik Kerja Lapangan</span>
+                        <span class="timeline-card-org">Universitas Subang</span>
+                        <span class="timeline-card-date">april-juni 2026</span>
+                    </div>
+                    <p class="timeline-card-desc">Membantu bagian Administrasi Universitas dalam mengelola sistem informasi dan persuratan.</p>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-card-header">
+                        <span class="timeline-card-title">Anggota Pastebrata</span>
+                        <span class="timeline-card-org">Paskibra SMKN 2 Subang</span>
+                        <span class="timeline-card-date">2024 - Sekarang</span>
+                    </div>
+                    <p class="timeline-card-desc">Bertanggung jawab di bidang IT mengelola dan membuat jadwal organisasi dan membuat surat serta membantu dokumentasi kegiatan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="assets/arch-logo.svg" alt="Arch" class="footer-brand-icon">
+                    <span class="footer-brand-text">ZyyArch</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Beranda</a>
+                    <a href="about.html">Tentang</a>
+                    <a href="experience.html">Pengalaman</a>
+                    <a href="projects.html">Proyek</a>
+                    <a href="certificates.html">Sertifikat</a>
+                    <a href="contact.html">Kontak</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                &copy; <span id="tahun-copyright"></span> <span class="mono">Ezy Muhamad Ikbal</span>. Hak cipta dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
