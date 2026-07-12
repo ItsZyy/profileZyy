@@ -186,7 +186,7 @@
         }
     });
 
-    var WELCOME_TEXT = 'Halo! Saya adalah AI Assistant yang dapat membantu Anda mengenal portfolio Ezy Muhammad Ikbal. Silakan ajukan pertanyaan.';
+    var WELCOME_TEXT = 'Halo! Saya adalah AI Assistant Ezy Muhammad Ikbal, yang dapat membantu anda mengenali bos saya. ada yang ingin di tanyakan?';
     var CHIP_LABELS = ['Tentang Saya', 'Keahlian', 'Project', 'Pengalaman', 'Sertifikat', 'Kontak'];
 
     function scrollToBottom() {
