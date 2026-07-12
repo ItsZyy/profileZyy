@@ -71,7 +71,6 @@ ul {
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 0 0;
     background-color: transparent;
     border-bottom: 1px solid transparent;
     transition: background-color 0.35s var(--ease),
@@ -91,7 +90,7 @@ ul {
 .navbar-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 32px;
     height: 60px;
 }
 
@@ -410,31 +409,6 @@ body.home-page .hero-avatar {
 body.home-page .footer {
     margin-top: 0;
     flex-shrink: 0;
-    padding: 14px 0 12px;
-    border-top: 1px solid var(--border);
-}
-
-body.home-page .footer-inner {
-    justify-content: center;
-}
-
-body.home-page .footer-brand-icon {
-    width: 16px;
-    height: 16px;
-}
-
-body.home-page .footer-brand-text {
-    font-size: 12px;
-}
-
-body.home-page .footer-links {
-    display: none;
-}
-
-body.home-page .footer-copy {
-    font-size: 11px;
-    margin-top: 10px;
-    padding-top: 10px;
 }
 
 /* ========================================
@@ -807,14 +781,14 @@ body.home-page .footer-copy {
 .footer {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border);
-    padding: 40px 0 32px;
+    padding: 14px 0 12px;
     margin-top: var(--section-gap);
 }
 
 .footer-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
 }
@@ -826,41 +800,30 @@ body.home-page .footer-copy {
 }
 
 .footer-brand-icon {
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     object-fit: contain;
     opacity: 0.6;
 }
 
 .footer-brand-text {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--text-muted);
 }
 
 .footer-links {
-    display: flex;
-    gap: 24px;
-}
-
-.footer-links a {
-    font-size: 13px;
-    color: var(--text-muted);
-    transition: color 0.25s var(--ease);
-}
-
-.footer-links a:hover {
-    color: var(--accent);
+    display: none;
 }
 
 .footer-copy {
     width: 100%;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-dim);
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 10px;
+    padding-top: 10px;
     border-top: 1px solid var(--border);
 }
 
@@ -1035,15 +998,6 @@ body.home-page .footer-copy {
         grid-template-columns: repeat(3, 1fr);
         gap: 16px;
     }
-
-    .footer-inner {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .footer-links {
-        gap: 20px;
-    }
 }
 
 /* ========================================
@@ -1148,10 +1102,6 @@ body.home-page .footer-copy {
 
     .page-hero-title {
         font-size: 26px;
-    }
-
-    .footer {
-        padding: 32px 0 24px;
     }
 }
 
