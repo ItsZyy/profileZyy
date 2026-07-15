@@ -1547,7 +1547,67 @@ body.home-page .footer {
 }
 
 /* ========================================
-   ACCESSIBILITY
+   FORM NOTIFICATION / TOAST
+   ======================================== */
+
+.form-toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--bg-elevated);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius-md);
+    padding: 14px 24px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-lg);
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s var(--ease),
+                visibility 0.3s var(--ease),
+                transform 0.3s var(--ease);
+    max-width: 90vw;
+    text-align: center;
+}
+
+.form-toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.form-toast::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.form-toast.form-toast--success {
+    border-color: rgba(74, 222, 128, 0.3);
+}
+
+.form-toast.form-toast--success::before {
+    background: var(--green);
+}
+
+.form-toast.form-toast--error {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.form-toast.form-toast--error::before {
+    background: var(--red);
+}
+
+/* ========================================
+    ACCESSIBILITY
    ======================================== */
 
 .sr-only {

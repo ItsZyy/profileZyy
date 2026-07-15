@@ -397,8 +397,36 @@
     });
 
     // ========================================
-    // CONTACT FORM VALIDATION
+    // CONTACT FORM - EMAILJS INTEGRATION
     // ========================================
+
+    function showToast(message, type) {
+        var existing = document.querySelector('.form-toast');
+        if (existing) existing.remove();
+
+        var toast = document.createElement('div');
+        toast.className = 'form-toast' + (type ? ' form-toast--' + type : '');
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        requestAnimationFrame(function () {
+            toast.classList.add('show');
+        });
+
+        setTimeout(function () {
+            toast.classList.remove('show');
+            setTimeout(function () {
+                if (toast.parentNode) toast.remove();
+            }, 300);
+        }, 4000);
+    }
+
+    function isEmailConfigured() {
+        return EMAIL_CONFIG
+            && EMAIL_CONFIG.publicKey
+            && EMAIL_CONFIG.serviceId
+            && EMAIL_CONFIG.templateId;
+    }
 
     var contactForm = document.getElementById('contact-form');
 
@@ -429,7 +457,6 @@
             formFields[key].classList.add('error');
         }
 
-        // Clear error on input
         fieldNames.forEach(function (key) {
             formFields[key].addEventListener('input', function () {
                 clearError(key);
@@ -442,7 +469,6 @@
             var isValid = true;
             var values = {};
 
-            // Validate all fields
             fieldNames.forEach(function (key) {
                 var val = formFields[key].value.trim();
                 values[key] = val;
@@ -454,7 +480,6 @@
                 }
             });
 
-            // Validate email format
             if (values.email) {
                 var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(values.email)) {
@@ -468,16 +493,35 @@
 
             if (!isValid) return;
 
-            // Build mailto
-            var subject = 'Pesan dari Website Portfolio - ' + values.nama;
-            var body = 'Nama: ' + values.nama + '%0D%0A'
-                     + 'Email: ' + values.email + '%0D%0A'
-                     + 'Subjek: ' + values.subjek + '%0D%0A'
-                     + 'Pesan:%0D%0A' + values.pesan;
+            if (!isEmailConfigured()) return;
 
-            var mailtoLink = 'mailto:ezymikbal@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + body;
+            var submitBtn = document.getElementById('form-submit');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.6';
+            }
 
-            window.open(mailtoLink, '_blank');
+            var templateParams = {
+                from_name: values.nama,
+                from_email: values.email,
+                subject: values.subjek,
+                message: values.pesan
+            };
+
+            emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, templateParams, EMAIL_CONFIG.publicKey)
+                .then(function () {
+                    showToast('Pesan berhasil dikirim!', 'success');
+                    contactForm.reset();
+                })
+                .catch(function () {
+                    showToast('Gagal mengirim pesan. Silakan coba lagi.', 'error');
+                })
+                .finally(function () {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '';
+                    }
+                });
         });
     }
 
