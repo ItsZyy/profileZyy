@@ -59,6 +59,42 @@
         </div>
     </div>
 
+    <!-- Kirim Pesan -->
+    <section class="section" id="kirim-pesan">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">echo "Halo!" > /dev/null</span>
+                <h2 class="section-title">Kirim Pesan</h2>
+            </div>
+            <form class="contact-form" id="contact-form" novalidate>
+                <div class="form-group">
+                    <label class="form-label" for="form-nama">Nama</label>
+                    <input type="text" class="form-input" id="form-nama" placeholder="Nama lengkap" required autocomplete="name">
+                    <span class="form-error" id="error-nama">Nama wajib diisi</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="form-email">Email</label>
+                    <input type="email" class="form-input" id="form-email" placeholder="contoh@email.com" required autocomplete="email">
+                    <span class="form-error" id="error-email">Email wajib diisi</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="form-subjek">Subjek</label>
+                    <input type="text" class="form-input" id="form-subjek" placeholder="Subjek pesan" required>
+                    <span class="form-error" id="error-subjek">Subjek wajib diisi</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="form-pesan">Pesan</label>
+                    <textarea class="form-input form-textarea" id="form-pesan" placeholder="Tulis pesan Anda di sini..." rows="5" required></textarea>
+                    <span class="form-error" id="error-pesan">Pesan wajib diisi</span>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit" id="form-submit">
+                    <svg class="form-submit-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    Kirim Pesan
+                </button>
+            </form>
+        </div>
+    </section>
+
     <!-- Kontak -->
     <section class="section" id="kontak">
         <div class="container">

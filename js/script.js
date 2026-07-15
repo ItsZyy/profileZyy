@@ -397,6 +397,91 @@
     });
 
     // ========================================
+    // CONTACT FORM VALIDATION
+    // ========================================
+
+    var contactForm = document.getElementById('contact-form');
+
+    if (contactForm) {
+        var formFields = {
+            nama: document.getElementById('form-nama'),
+            email: document.getElementById('form-email'),
+            subjek: document.getElementById('form-subjek'),
+            pesan: document.getElementById('form-pesan'),
+        };
+
+        var formErrors = {
+            nama: document.getElementById('error-nama'),
+            email: document.getElementById('error-email'),
+            subjek: document.getElementById('error-subjek'),
+            pesan: document.getElementById('error-pesan'),
+        };
+
+        var fieldNames = ['nama', 'email', 'subjek', 'pesan'];
+
+        function clearError(key) {
+            formErrors[key].classList.remove('show');
+            formFields[key].classList.remove('error');
+        }
+
+        function showError(key) {
+            formErrors[key].classList.add('show');
+            formFields[key].classList.add('error');
+        }
+
+        // Clear error on input
+        fieldNames.forEach(function (key) {
+            formFields[key].addEventListener('input', function () {
+                clearError(key);
+            });
+        });
+
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            var isValid = true;
+            var values = {};
+
+            // Validate all fields
+            fieldNames.forEach(function (key) {
+                var val = formFields[key].value.trim();
+                values[key] = val;
+                if (!val) {
+                    showError(key);
+                    isValid = false;
+                } else {
+                    clearError(key);
+                }
+            });
+
+            // Validate email format
+            if (values.email) {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(values.email)) {
+                    formErrors.email.textContent = 'Format email tidak valid';
+                    showError('email');
+                    isValid = false;
+                } else {
+                    formErrors.email.textContent = 'Email wajib diisi';
+                }
+            }
+
+            if (!isValid) return;
+
+            // Build mailto
+            var subject = 'Pesan dari Website Portfolio - ' + values.nama;
+            var body = 'Nama: ' + values.nama + '%0D%0A'
+                     + 'Email: ' + values.email + '%0D%0A'
+                     + 'Subjek: ' + values.subjek + '%0D%0A'
+                     + 'Pesan:%0D%0A' + values.pesan;
+
+            var mailtoLink = 'mailto:ezymikbal@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + body;
+
+            window.open(mailtoLink, '_blank');
+        });
+    }
+
+    // ========================================
     // EVENT LISTENERS
     // ========================================
 
